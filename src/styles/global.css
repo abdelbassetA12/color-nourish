@@ -1,0 +1,16 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font-body); color: var(--c-ink); background: var(--c-bg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; margin: 0 0 var(--s-3); font-weight: 600; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); } h2 { font-size: clamp(1.5rem, 3vw, 2rem); } h3 { font-size: 1.15rem; }
+p { margin: 0 0 var(--s-3); } ul, ol { padding-left: 1.25rem; }
+a { color: var(--c-primary-dark); } a:hover { color: var(--c-primary); }
+:focus-visible { outline: 3px solid #f2a93b; outline-offset: 2px; border-radius: 4px; }
+main:focus { outline: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link { position: absolute; left: -999px; top: 8px; background: var(--c-ink); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip-link:focus { left: 8px; }
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--s-4); }
+.container--narrow { max-width: var(--container-narrow); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
