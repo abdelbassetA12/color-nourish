@@ -80,4 +80,53 @@ export const products = [
     learningBenefits: ['Creativity', 'Hand-eye coordination'],
     emoji: '🐣', color: '#fff7c9', keywords: ['baby', 'animals', 'coloring'],
   },
+  {
+  ...common,
+  id: 'p7',
+  slug: 'adult-mandala-coloring-book',
+  title: 'Adult Mandala Coloring Book',
+  coverImage: null,
+
+  shortDescription:
+    'Beautiful and intricate mandala designs for adults who enjoy creative and relaxing coloring experiences.',
+
+  description:
+    'Explore a beautiful collection of mandala coloring pages designed for adults. Featuring intricate geometric patterns, symmetrical floral details, and decorative shapes, this printable coloring book offers an enjoyable creative activity for anyone who loves detailed artwork and mindful coloring.',
+
+  category: 'Adult Mandala Coloring Books',
+
+  productType: 'Printable PDF',
+  price: 5.99,
+  format: 'PDF',
+  pageCount: 30,
+  ageRange: 'Adults',
+
+  features: [
+    '30 intricate mandala coloring pages.',
+    'Beautiful geometric and floral-inspired patterns.',
+    'Black-and-white printable designs.',
+    'Detailed illustrations for creative coloring.',
+    'Portrait US Letter format.',
+    'Digital PDF product.'
+  ],
+
+  learningBenefits: [
+    'Creative expression',
+    'Artistic exploration',
+    'Focus and concentration',
+    'Enjoyable mindful coloring'
+  ],
+
+  emoji: '🪷',
+  color: '#f3e5f5',
+
+  keywords: [
+    'adult mandala',
+    'mandala coloring',
+    'adult coloring book',
+    'geometric patterns',
+    'floral mandala',
+    'printable coloring pages'
+  ]
+}
 ];
