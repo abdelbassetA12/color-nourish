@@ -22,6 +22,7 @@ export const products = [
   {
     ...common, id: 'p1', slug: 'animal-alphabet-coloring-letter-tracing',
     title: 'Animal Alphabet Coloring & Letter Tracing Book',
+    coverImage: '/images/products/commercially_appealing_FRONT_COVER_for_a_children_-0.jpg',
     shortDescription: 'A playful A–Z journey featuring adorable animals, uppercase and lowercase letters, and handwriting practice for young learners.',
     description: 'Introduce young learners to the English alphabet through a cheerful collection of animal-themed coloring worksheets. Each page focuses on one letter, features a recognizable animal illustration, and provides uppercase and lowercase letter practice. Designed for printable educational activities at home or in preschool settings.',
     category: 'Animal Alphabet Books', productType: 'Printable PDF', price: 4.99, format: 'PDF', pageCount: 26, ageRange: '3–5 years',
