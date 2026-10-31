@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Cover, PagePreview } from '../common/ui.jsx';
 
 export default function ProductGallery({ product }) {
-  const extra = product.gallery?.length ? product.gallery.map((g, i) => ({ id: `g${i}`, src: g.src, alt: g.alt, label: `Preview ${i + 1}` })) : [{ id: 'pa', variant: 'a', label: 'Sample page A' }, { id: 'pb', variant: 'b', label: 'Sample page B' }];
+  const extra = product.previewImages?.length ? product.previewImages.map((g, i) => ({ id: `g${i}`, src: typeof g === 'string' ? g : g.src, alt: typeof g === 'string' ? undefined : g.alt, label: `Preview ${i + 1}` })) : [{ id: 'pa', variant: 'a', label: 'Sample page A' }, { id: 'pb', variant: 'b', label: 'Sample page B' }];
   const slides = [{ id: 'cover', cover: true, label: 'Cover' }, ...extra];
   const [active, setActive] = useState(0);
   const [broken, setBroken] = useState({});

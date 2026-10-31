@@ -23,13 +23,30 @@ export function Button({ to, href, variant = 'primary', children, className = ''
   return <button type="button" className={cls} {...rest}>{children}</button>;
 }
 
+export function Mandala({ className = '' }) {
+  const outer = [...Array(12)].map((_, i) => <ellipse key={i} cx="0" cy="-26" rx="7" ry="16" transform={`rotate(${i * 30})`} />);
+  const inner = [...Array(8)].map((_, i) => <ellipse key={i} cx="0" cy="-12" rx="3.5" ry="8" transform={`rotate(${i * 45})`} />);
+  return (
+    <svg className={`mandala ${className}`} viewBox="-50 -50 100 100" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth=".6">
+      <circle r="46" /><circle r="42" />{outer}{inner}<circle r="4" />
+    </svg>
+  );
+}
+
 // Generated cover art (used when no image is set or an image fails to load)
 export function CoverArt({ product }) {
+  if (product.section === 'adults') {
+    return (
+      <div className="cover cover--art cover--adult" style={{ background: product.color || '#e8efec' }} role="img" aria-label={`${product.title} sample cover illustration`}>
+        <Mandala /><span className="cover__title" aria-hidden="true">{product.title}</span><span className="cover__tag" aria-hidden="true">{product.isFree ? 'FREE · ' : ''}{product.format}</span>
+      </div>
+    );
+  }
   return (
     <div className="cover cover--art" style={{ background: product.color || '#efe6ff' }} role="img" aria-label={`${product.title} sample cover illustration`}>
       <span className="cover__emoji" aria-hidden="true">{product.emoji || '📘'}</span>
       <span className="cover__title" aria-hidden="true">{product.title}</span>
-      <span className="cover__tag" aria-hidden="true">{product.format}</span>
+      <span className="cover__tag" aria-hidden="true">{product.isFree ? 'FREE · ' : ''}{product.format}</span>
     </div>
   );
 }
@@ -44,22 +61,28 @@ export function Cover({ product, eager }) {
 
 // Illustrative interior page mockup (not the actual printable file)
 export function PagePreview({ product, variant }) {
-  const letter = variant === 'b' ? 'Bb' : 'Aa';
+  const adult = product.section === 'adults';
   return (
     <div className="page-preview" role="img" aria-label={`Illustrative mockup of a worksheet page for ${product.title}`}>
-      <div className="page-preview__letter" aria-hidden="true">{letter}</div>
-      <div className="page-preview__art" aria-hidden="true">{product.emoji}</div>
-      <div className="page-preview__lines" aria-hidden="true"><i /><i /><i /></div>
+      {adult ? <Mandala className="page-preview__mandala" /> : (<>
+        <div className="page-preview__letter" aria-hidden="true">{variant === 'b' ? 'Bb' : 'Aa'}</div>
+        <div className="page-preview__art" aria-hidden="true">{product.emoji}</div>
+        <div className="page-preview__lines" aria-hidden="true"><i /><i /><i /></div>
+      </>)}
       <span className="page-preview__note" aria-hidden="true">Illustrative mockup</span>
     </div>
   );
 }
 
 export const PriceDisplay = ({ product }) => (
-  <p className="price">
-    <span className="price__now">{formatPrice(product.price, product.currency)}</span>
-    {hasDiscount(product) && <s className="price__old"><span className="sr-only">Original price </span>{formatPrice(product.originalPrice, product.currency)}</s>}
-  </p>
+  product.isFree
+    ? <p className="price"><span className="price__now price__free">FREE</span></p>
+    : (
+      <p className="price">
+        <span className="price__now">{formatPrice(product.price, product.currency)}</span>
+        {hasDiscount(product) && <s className="price__old"><span className="sr-only">Original price </span>{formatPrice(product.originalPrice, product.currency)}</s>}
+      </p>
+    )
 );
 
 export function Breadcrumbs({ items }) {

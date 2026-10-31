@@ -6,10 +6,19 @@ import { useCart } from '../../context/CartContext.jsx';
 import { Container, Toast } from '../common/ui.jsx';
 
 const Logo = () => (
-  <Link to="/" className="logo" aria-label={`${site.brandName} home`}>
-    {site.logoImage ? <img src={site.logoImage} alt="" width="36" height="36" /> : <span className="logo__badge" aria-hidden="true">{site.logoText}</span>}
+   <Link
+    to="/"
+    className="logo"
+    aria-label={`${site.brandName} home`}
+  >
+    <img
+      src={site.logoImage || '/images/brand/logo.jpeg'}
+      alt={site.brandName}
+      className="logo__image"
+    />
     <span className="logo__text">{site.brandName}</span>
   </Link>
+  
 );
 
 function Header() {
@@ -31,7 +40,7 @@ function Header() {
       <Container className="header__inner">
         <Logo />
         <nav id="main-nav" aria-label="Main" className={`nav ${open ? 'nav--open' : ''}`}>
-          {site.nav.map((n) => <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}>{n.label}</NavLink>)}
+          {site.nav.map((n) => <NavLink key={n.to} to={n.to} end={n.to === '/' || n.to.includes('?')} className={({ isActive }) => `nav__link ${(n.to.includes('?') ? loc.pathname === '/shop' && loc.search === '?status=free' : n.to === '/shop' ? isActive && loc.search !== '?status=free' : isActive) ? 'is-active' : ''}`}>{n.label}</NavLink>)}
         </nav>
         <div className="header__actions">
           <button type="button" className="icon-btn" aria-label="Search products" aria-expanded={searching} onClick={() => setSearching((s) => !s)}><Search size={20} aria-hidden="true" /></button>
@@ -64,7 +73,7 @@ function Footer() {
         <div><Logo /><p className="footer__blurb">{site.footer.blurb}</p>
           {socials.length > 0 && <ul className="footer__social">{socials.map((s) => <li key={s.label}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>}
         </div>
-        <nav aria-label="Shop links"><h2>Shop</h2><ul>{[{ to: '/shop', label: 'All products' }, { to: '/categories', label: 'Categories' }, { to: '/cart', label: 'Cart' }, { to: '/about', label: 'About' }].map((l) => <li key={l.to}><Link to={l.to}>{l.label}</Link></li>)}</ul></nav>
+        <nav aria-label="Shop links"><h2>Shop</h2><ul>{[{ to: '/kids', label: 'Kids collection' }, { to: '/adults', label: 'Adults collection' }, { to: '/shop?status=free', label: 'Free downloads' }, { to: '/shop', label: 'All products' }, { to: '/categories', label: 'Categories' }, { to: '/cart', label: 'Cart' }, { to: '/about', label: 'About' }].map((l) => <li key={l.to}><Link to={l.to}>{l.label}</Link></li>)}</ul></nav>
         <nav aria-label="Support"><h2>Support</h2><ul>{site.footer.support.map((l) => <li key={l.to}><Link to={l.to}>{l.label}</Link></li>)}</ul></nav>
         <nav aria-label="Policies"><h2>Policies</h2><ul>{site.footer.policies.map((l) => <li key={l.to}><Link to={l.to}>{l.label}</Link></li>)}</ul></nav>
       </Container>

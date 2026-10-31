@@ -10,6 +10,7 @@ import FAQ from './pages/FAQ.jsx';
 import Contact from './pages/Contact.jsx';
 import Cart from './pages/Cart.jsx';
 import { Privacy, Terms, RefundPolicy, DigitalDownloads } from './pages/Policies.jsx';
+import SectionPage from './pages/SectionPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function ScrollToTop() {
@@ -25,6 +26,8 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/kids" element={<SectionPage section="kids" />} />
+          <Route path="/adults" element={<SectionPage section="adults" />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/categories" element={<Categories />} />

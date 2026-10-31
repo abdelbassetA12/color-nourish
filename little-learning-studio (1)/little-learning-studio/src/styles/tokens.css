@@ -1,0 +1,11 @@
+:root {
+  --c-bg: #ffffff; --c-cream: #fbf7f0; --c-ink: #1f2440; --c-muted: #5b6080;
+  --c-primary: #6d4fc9; --c-primary-dark: #55399f; --c-lav: #efe9fb; --c-border: #e6e1f0;
+  --c-warn-bg: #fff4dc; --c-error: #b3261e;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-head: 'Fredoka', 'Inter', system-ui, sans-serif;
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-6: 1.5rem; --s-8: 2rem; --s-12: 3rem; --s-16: 4.5rem;
+  --r-sm: 10px; --r-md: 16px; --r-lg: 24px;
+  --shadow-sm: 0 1px 3px rgba(31,36,64,.08); --shadow-md: 0 8px 24px rgba(63,45,120,.10);
+  --container: 1160px; --container-narrow: 760px; --t: 180ms;
+}

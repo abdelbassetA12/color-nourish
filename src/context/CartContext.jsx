@@ -24,7 +24,7 @@ export function CartProvider({ children }) {
   const notify = useCallback((m) => setToast(m), []);
   const add = useCallback((slug) => {
     const p = getProduct(slug);
-    if (!p) return;
+    if (!p || p.isFree) return;
     setItems((cur) => cur.some((i) => i.slug === slug)
       ? cur.map((i) => (i.slug === slug ? { ...i, qty: clamp(i.qty + 1) } : i))
       : [...cur, { slug, qty: 1 }]);
