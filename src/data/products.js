@@ -162,10 +162,10 @@ export const products = [
     productStatus: 'free',
     price: 0,
     isDemo: false,
-    coverImage: '/images/products/commercially_appealing_FRONT_COVER_for_a_children_-0.jpg',
+    coverImage: '/images/products/colornourish-pin-free-mandala.png',
     previewImages: [
-      { src: '/images/previews/mandala-page-1.jpg', alt: 'Detailed floral mandala coloring page, preview 1' },
-      { src: '/images/previews/mandala-page-2.jpg', alt: 'Geometric mandala coloring page, preview 2' },
+      { src: '/images/products/mandala.images1.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala.images2.png', alt: 'Geometric mandala coloring page, preview 2' },
     ],
     downloadUrl: '/downloads/adults/pdfmandala.pdf',
     title: 'Free Relaxing Mandala Coloring Book (10 Pages)',
