@@ -166,6 +166,7 @@ export const products = [
     previewImages: [
       { src: '/images/products/mandala.images1.png', alt: 'Detailed floral mandala coloring page, preview 1' },
       { src: '/images/products/mandala.images2.png', alt: 'Geometric mandala coloring page, preview 2' },
+      { src: '/images/products/mandala.images3.png', alt: 'Geometric mandala coloring page, preview 3' },
     ],
     downloadUrl: '/downloads/adults/pdfmandala.pdf',
     title: 'Free Relaxing Mandala Coloring Book (10 Pages)',

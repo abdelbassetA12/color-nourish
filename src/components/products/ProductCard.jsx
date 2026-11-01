@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import { Cover, PriceDisplay } from '../common/ui.jsx';

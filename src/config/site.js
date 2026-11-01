@@ -25,6 +25,11 @@ brandName: 'ColorNourish',
     { label: 'Pinterest', url: '' },
     { label: 'Etsy', url: '' },
   ],
+    analytics: {
+    adminPath: '/stats-k7q2x9',  // غيّره إلى نص عشوائي طويل خاص بك
+    ga4Id: '',                   // مثال: 'G-ABC123XYZ' من Google Analytics 4
+    endpoint: '',                // اختياري: رابط خادم خاص يستقبل الأحداث (POST JSON)
+  },
   footer: {
     blurb: 'Printable coloring books and worksheets for kids and adults, delivered as digital PDF files.',
     support: [
