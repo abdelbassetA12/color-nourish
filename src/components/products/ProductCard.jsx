@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import { Cover, PriceDisplay } from '../common/ui.jsx';
 import { downloadHref } from '../../utils/productHelpers.js';
+import FavoriteButton from './FavoriteButton.jsx';
 
 export function ProductCard({ product }) {
   const dl = downloadHref(product);
@@ -22,6 +23,7 @@ export function ProductCard({ product }) {
             : <Link to={`/product/${product.slug}`} className="btn btn--soft btn--sm">View details<span className="sr-only"> for {product.title}</span></Link>}
         </div>
         {dl && <Link to={`/product/${product.slug}`} className="product-card__more">View details<span className="sr-only"> for {product.title}</span></Link>}
+        <FavoriteButton product={product} />
       </div>
     </article>
   );
