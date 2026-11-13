@@ -169,6 +169,7 @@ export const products = [
       { src: '/images/products/mandala.images3.png', alt: 'Geometric mandala coloring page, preview 3' },
     ],
     downloadUrl: '/downloads/adults/pdfmandala.pdf',
+    //actionUrl: 'https://facebook.com',
     title: 'Free Relaxing Mandala Coloring Book (10 Pages)',
     shortDescription: 'Ten intricate mandala designs to color at your own pace. A free, printable PDF for calm, screen-free relaxation.',
     description: 'Slow down and unwind with this free mandala coloring book for adults. It features ten detailed mandala designs, each on its own page, ranging from delicate floral patterns to richly layered geometric compositions. The clean black-and-white line art is ideal for colored pencils, gel pens, and fine markers. Download the PDF instantly, print as many copies as you like for personal use, and color whenever you need a quiet creative break. No account or payment required.',

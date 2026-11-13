@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx';
 import Shop from './pages/Shop.jsx';
 import SectionPage from './pages/SectionPage.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
+import FreeDownload from './pages/FreeDownload.jsx';
 import Categories from './pages/Categories.jsx';
 import About from './pages/About.jsx';
 import FAQ from './pages/FAQ.jsx';
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/adults" element={<SectionPage section="adults" />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/FreeDownload/:slug" element={<FreeDownload />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />

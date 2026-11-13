@@ -89,3 +89,428 @@ export default function ProductBrowser({ section }) {
     </div>
   );
 }
+
+
+
+/*
+
+
+
+import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { SlidersHorizontal } from 'lucide-react';
+
+import { categories } from '../../data/categories.js';
+
+import {
+  inSection,
+  categoriesFor,
+  productTypes,
+} from '../../utils/productHelpers.js';
+
+import { EmptyState, Button } from '../common/ui.jsx';
+import { ProductGrid } from './ProductCard.jsx';
+
+const SORTS = [
+  { id: 'featured', label: 'Featured' },
+  { id: 'newest', label: 'Newest' },
+  { id: 'price-asc', label: 'Price: low to high' },
+  { id: 'price-desc', label: 'Price: high to low' },
+];
+
+const STATUSES = [
+  { id: '', label: 'Free and paid' },
+  { id: 'free', label: 'Free only' },
+  { id: 'paid', label: 'Paid only' },
+];
+
+// Price filters are defined locally to avoid a missing export.
+const PRICE_RANGES = [
+  {
+    id: 'all',
+    label: 'All prices',
+    test: () => true,
+  },
+  {
+    id: 'under-5',
+    label: 'Under $5',
+    test: (product) => Number(product._price_ ?? product.price ?? 0) < 5,
+  },
+  {
+    id: '5-10',
+    label: '$5 - $10',
+    test: (product) => {
+      const price = Number(product._price_ ?? product.price ?? 0);
+      return price >= 5 && price <= 10;
+    },
+  },
+  {
+    id: '10-plus',
+    label: '$10 and above',
+    test: (product) => Number(product._price_ ?? product.price ?? 0) > 10,
+  },
+];
+
+const getPrice = (product) =>
+  Number(product?._price_ ?? product?.price ?? 0);
+
+const getId = (product) =>
+  product?._id_ ?? product?.id ?? product?._slug_ ?? product?.slug;
+
+const getFreeStatus = (product) => {
+  if (product?._productStatus_ === 'free' || product?.productStatus === 'free') {
+    return true;
+  }
+
+  if (product?._productStatus_ === 'paid' || product?.productStatus === 'paid') {
+    return false;
+  }
+
+  if (typeof product?._isFree_ === 'boolean') return product._isFree_;
+  if (typeof product?.isFree === 'boolean') return product.isFree;
+
+  return getPrice(product) <= 0;
+};
+
+export default function ProductBrowser({ section }) {
+  const [params, setParams] = useSearchParams();
+  const [showFilters, setShowFilters] = useState(false);
+
+  const base = useMemo(
+    () => inSection(section),
+    [section]
+  );
+
+  const cats = section ? categoriesFor(section) : categories;
+
+  const types = useMemo(() => {
+    if (!section) return productTypes;
+
+    return [
+      ...new Set(
+        base
+          .map((product) => product._productType_ || product.productType)
+          .filter(Boolean)
+      ),
+    ];
+  }, [section, base]);
+
+  const q = params.get('q') || '';
+
+  const requestedCategory = params.get('category') || '';
+
+  const cat = cats.some(
+    (category) => category._slug_ === requestedCategory
+  )
+    ? requestedCategory
+    : '';
+
+  const type = params.get('type') || '';
+
+  const requestedStatus = params.get('status') || '';
+
+  const status = ['free', 'paid'].includes(requestedStatus)
+    ? requestedStatus
+    : '';
+
+  const requestedPrice = params.get('price') || 'all';
+
+  const price = PRICE_RANGES.some(
+    (range) => range.id === requestedPrice
+  )
+    ? requestedPrice
+    : 'all';
+
+  const requestedSort = params.get('sort') || 'featured';
+
+  const sort = SORTS.some(
+    (item) => item.id === requestedSort
+  )
+    ? requestedSort
+    : 'featured';
+
+  const update = (key, value) => {
+    const next = new URLSearchParams(params);
+
+    if (
+      !value ||
+      value === 'all' ||
+      (key === 'sort' && value === 'featured')
+    ) {
+      next.delete(key);
+    } else {
+      next.set(key, value);
+    }
+
+    setParams(next, { replace: true });
+  };
+
+  const results = useMemo(() => {
+    const term = q.trim().toLowerCase();
+
+    const selectedRange = PRICE_RANGES.find(
+      (range) => range.id === price
+    );
+
+    const categoryName = cats.find(
+      (category) => category._slug_ === cat
+    )?._name_;
+
+    const list = base.filter((product) => {
+      const productCategory =
+        product._category_ || product.category || '';
+
+      const productType =
+        product._productType_ || product.productType || '';
+
+      const isFree = getFreeStatus(product);
+
+      if (categoryName && productCategory !== categoryName) {
+        return false;
+      }
+
+      if (type && productType !== type) {
+        return false;
+      }
+
+      if (status === 'free' && !isFree) {
+        return false;
+      }
+
+      if (status === 'paid' && isFree) {
+        return false;
+      }
+
+      if (selectedRange && !selectedRange.test(product)) {
+        return false;
+      }
+
+      if (!term) return true;
+
+      const searchableText = [
+        product._title_ || product.title,
+        product._shortDescription_ || product.shortDescription,
+        product._category_ || product.category,
+        product._productType_ || product.productType,
+        product._section_ || product.section,
+        isFree ? 'free' : 'paid',
+        ...(product._keywords_ || product.keywords || []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      return searchableText.includes(term);
+    });
+
+    const indexMap = new Map(
+      base.map((product, index) => [getId(product), index])
+    );
+
+    if (sort === 'price-asc') {
+      list.sort((a, b) => getPrice(a) - getPrice(b));
+    } else if (sort === 'price-desc') {
+      list.sort((a, b) => getPrice(b) - getPrice(a));
+    } else if (sort === 'newest') {
+      list.sort(
+        (a, b) =>
+          (indexMap.get(getId(b)) ?? 0) -
+          (indexMap.get(getId(a)) ?? 0)
+      );
+    } else {
+      list.sort(
+        (a, b) =>
+          Number(
+            !!(b._featured_ ?? b.featured)
+          ) -
+            Number(
+              !!(a._featured_ ?? a.featured)
+            ) ||
+          (indexMap.get(getId(a)) ?? 0) -
+            (indexMap.get(getId(b)) ?? 0)
+      );
+    }
+
+    return list;
+  }, [base, cats, q, cat, type, status, price, sort]);
+
+  const active =
+    !!q ||
+    !!cat ||
+    !!type ||
+    !!status ||
+    price !== 'all';
+
+  const clear = () => {
+    setParams({}, { replace: true });
+  };
+
+  return (
+    <div className="shop">
+      <button
+        type="button"
+        className="btn btn--soft filters-toggle"
+        aria-expanded={showFilters}
+        aria-controls={`filters-${section || 'all'}`}
+        onClick={() => setShowFilters((current) => !current)}
+      >
+        <SlidersHorizontal size={18} aria-hidden="true" />
+        Filters
+      </button>
+
+      <aside
+        id={`filters-${section || 'all'}`}
+        className={`filters ${showFilters ? 'filters--open' : ''}`}
+        aria-label="Product filters"
+      >
+        <div className="field">
+          <label htmlFor="f-q">Search</label>
+          <input
+            id="f-q"
+            type="search"
+            value={q}
+            onChange={(event) => update('q', event.target.value)}
+            placeholder="Search products"
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="f-cat">Category</label>
+          <select
+            id="f-cat"
+            value={cat}
+            onChange={(event) => update('category', event.target.value)}
+          >
+            <option value="">All categories</option>
+            {cats.map((category) => (
+              <option
+                key={category._slug_}
+                value={category._slug_}
+              >
+                {category._name_}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="field">
+          <label htmlFor="f-status">Free or paid</label>
+          <select
+            id="f-status"
+            value={status}
+            onChange={(event) => update('status', event.target.value)}
+          >
+            {STATUSES.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="field">
+          <label htmlFor="f-type">Product type</label>
+          <select
+            id="f-type"
+            value={type}
+            onChange={(event) => update('type', event.target.value)}
+          >
+            <option value="">All types</option>
+            {types.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="field">
+          <label htmlFor="f-price">Price</label>
+          <select
+            id="f-price"
+            value={price}
+            onChange={(event) => update('price', event.target.value)}
+          >
+            {PRICE_RANGES.map((range) => (
+              <option key={range.id} value={range.id}>
+                {range.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <Button
+          variant="ghost"
+          disabled={!active && sort === 'featured'}
+          onClick={clear}
+        >
+          Clear all filters
+        </Button>
+      </aside>
+
+      <div>
+        {section && (
+          <nav aria-label="Categories" className="chips">
+            <button
+              type="button"
+              className={`chip ${!cat ? 'is-active' : ''}`}
+              aria-pressed={!cat}
+              onClick={() => update('category', '')}
+            >
+              All
+            </button>
+
+            {cats.map((category) => (
+              <button
+                type="button"
+                key={category._slug_}
+                className={`chip ${
+                  cat === category._slug_ ? 'is-active' : ''
+                }`}
+                aria-pressed={cat === category._slug_}
+                onClick={() => update('category', category._slug_)}
+              >
+                {category._name_}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        <div className="shop__bar">
+          <p role="status" aria-live="polite">
+            {results.length} product{results.length === 1 ? '' : 's'} found
+          </p>
+
+          <div className="field field--inline">
+            <label htmlFor="f-sort">Sort by</label>
+            <select
+              id="f-sort"
+              value={sort}
+              onChange={(event) => update('sort', event.target.value)}
+            >
+              {SORTS.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {results.length > 0 ? (
+          <ProductGrid products={results} />
+        ) : (
+          <EmptyState
+            title="No products match your search"
+            text="Try different keywords or clear your filters."
+          >
+            <Button onClick={clear}>
+              Clear all filters
+            </Button>
+          </EmptyState>
+        )}
+      </div>
+    </div>
+  );
+}
+*/
