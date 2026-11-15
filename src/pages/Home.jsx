@@ -50,7 +50,18 @@ export default function Home() {
         <div className="grid grid--2">
           {Object.values(sections).map((s) => (
             <Link key={s.key} to={s.path} className={`card section-card theme-${s.key}`}>
+              {/*
               <div className="section-card__art" aria-hidden="true">{s.key === 'adults' ? <Mandala /> : s.art.map((e) => <span key={e}>{e}</span>)}</div>
+              
+              */}
+              
+              <div className="section-card__art">
+  <img
+    src={s.key === 'adults' ? '/images/adults-mandala-hero.png' : '/images/kids_coloring_hero_image.png'}
+    alt={s.key === 'adults' ? 'Adult mandala coloring books' : 'Kids coloring and learning activities'}
+    loading="lazy"
+  />
+</div>
               <p className="eyebrow">{s.label}</p><h3>{s.cardTitle}</h3><p>{s.cardText}</p><span className="section-card__cta">{s.cardTitle} →</span>
             </Link>
           ))}

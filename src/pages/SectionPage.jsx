@@ -1,3 +1,64 @@
+
+import { Container, Button } from '../components/common/ui.jsx';
+import ProductBrowser from '../components/products/ProductBrowser.jsx';
+import { sections } from '../data/sections.js';
+import { useSeo } from '../hooks/useSeo.js';
+
+// Used for both /kids and /adults.
+export default function SectionPage({ section }) {
+  const s = sections[section];
+
+  useSeo(s.seoTitle, s.seoDesc);
+
+  return (
+    <div className={`theme-${section}`}>
+      <section className="section-hero">
+        <Container className="section-hero__inner">
+          <div>
+            <p className="eyebrow">{s.eyebrow}</p>
+            <h1>{s.title}</h1>
+            <p className="hero__lead">{s.text}</p>
+
+            <div className="btn-row">
+              <Button to={`${s.path}?status=free`}>
+                Free downloads
+              </Button>
+
+              <Button to="/shop" variant="ghost">
+                Shop everything
+              </Button>
+            </div>
+          </div>
+
+          <div className="section-hero__art">
+            <img
+              src={
+                section === 'adults'
+                  ? '/images/adults-mandala-hero.png'
+                  : '/images/kids_coloring_hero_image.png'
+              }
+              alt={
+                section === 'adults'
+                  ? 'Adult mandala coloring books'
+                  : 'Kids coloring and learning activities'
+              }
+              loading="eager"
+            />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <h2 className="sr-only">{s.label} products</h2>
+          <ProductBrowser section={section} />
+        </Container>
+      </section>
+    </div>
+  );
+}
+
+/*
 import { Container, Button, Mandala } from '../components/common/ui.jsx';
 import ProductBrowser from '../components/products/ProductBrowser.jsx';
 import { sections } from '../data/sections.js';
@@ -24,3 +85,4 @@ export default function SectionPage({ section }) {
     </div>
   );
 }
+*/
