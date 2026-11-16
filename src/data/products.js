@@ -301,29 +301,30 @@ export const products = [
   price: 0,
   isDemo: false,
 
-  coverImage: '/images/products/50-Page-Coloring-Book-Cover.png',
+  coverImage: '/images/products/mandala50page/ColorNourish-50page.png',
 
   previewImages: [
     {
-      src: '/images/products/50-Page-Coloring-Preview-1.png',
+      src: '/images/products/mandala50page/50-Page-Coloring-Preview-1.png',
       alt: 'Intricate geometric mandala coloring page preview'
     },
     {
-      src: '/images/products/50-Page-Coloring-Preview-2.png',
+      src: '/images/products/mandala50page/50-Page-Coloring-Preview-2.png',
       alt: 'Beautiful floral and botanical coloring page preview'
     },
     {
-      src: '/images/products/50-Page-Coloring-Preview-3.png',
+      src: '/images/products/mandala50page/50-Page-Coloring-Preview-3.png',
       alt: 'Detailed nature-inspired adult coloring page preview'
     },
     {
-      src: '/images/products/50-Page-Coloring-Preview-4.png',
-      alt: 'Intricate abstract geometric coloring page preview'
-    }
+      src: '/images/products/mandala50page/50-Page-Coloring-Preview4.png',
+      alt: 'Detailed nature-inspired adult coloring page preview'
+    },
+     
   ],
 
   downloadUrl: '/downloads/adults/ultimate-50-page-coloring-book.pdf',
-
+  actionUrl: 'https://bestlockers.space/iframe/d0aba2d4-e128-11f1-924e-8a5fb7be40ea',
   title: 'The Ultimate 50-Page Coloring Book for Adults',
 
   shortDescription:
