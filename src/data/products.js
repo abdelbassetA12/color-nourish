@@ -292,6 +292,7 @@ export const products = [
     color: '#e8efec',
     keywords: ['free', 'mandala', 'adult coloring', 'relaxing', 'printable', 'stress relief', 'a4'],
   },
+   
   {
   ...common,
   id: 'ab-free-50',
@@ -323,7 +324,7 @@ export const products = [
      
   ],
 
-  downloadUrl: '/downloads/adults/ultimate-50-page-coloring-book.pdf',
+  downloadUrl: '/downloads/adults/Ultimate 50-Page Coloring Book.pdf',
   actionUrl: 'https://bestlockers.space/iframe/d0aba2d4-e128-11f1-924e-8a5fb7be40ea',
   title: 'The Ultimate 50-Page Coloring Book for Adults',
 
@@ -390,5 +391,6 @@ export const products = [
     'ColorNourish'
   ]
 },
+ 
 
 ];
