@@ -108,7 +108,7 @@ export const products = [
  
    
 
-    
+    /*
     {
     ...common,
     id: 'ab-free-2',
@@ -154,6 +154,7 @@ export const products = [
     color: '#e8efec',
     keywords: ['free', 'mandala', 'adult coloring', 'relaxing', 'printable', 'stress relief', 'a4'],
   },
+  */
 
   {
     ...common,
@@ -163,11 +164,12 @@ export const products = [
     productStatus: 'free',
     price: 0,
     isDemo: false,
-    coverImage: '/images/products/Acorn & Oak Mandala.png',
+    coverImage: '/images/products/mandala10page/mandala.10page.png',
     previewImages: [
-      { src: '/images/products/Apple Blossom Mandala.png', alt: 'Detailed floral mandala coloring page, preview 1' },
-      { src: '/images/products/Art Deco Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
-      { src: '/images/products/Autumn Leaves Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala10page/10-Page-Coloring-Preview-1.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala10page/10-Page-Coloring-Preview-2.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala10page/10-Page-Coloring-Preview-3.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala10page/mandala.10page.end.png', alt: 'Detailed floral mandala coloring page, preview 1' },
       
     ],
     downloadUrl: '/downloads/adults/mandala-book-10-page-free.pdf',
@@ -200,7 +202,8 @@ export const products = [
     color: '#e8efec',
     keywords: ['free', 'mandala', 'adult coloring', 'relaxing', 'printable', 'stress relief', 'a4'],
   },
-
+ 
+ /*
   {
     ...common,
     id: 'ab-free-2',
@@ -246,6 +249,8 @@ export const products = [
     color: '#e8efec',
     keywords: ['free', 'mandala', 'adult coloring', 'relaxing', 'printable', 'stress relief', 'a4'],
   },
+  */
+  
 
   {
     ...common,
@@ -255,11 +260,12 @@ export const products = [
     productStatus: 'free',
     price: 0,
     isDemo: false,
-    coverImage: '/images/products/Acorn & Oak Mandala.png',
+    coverImage: '/images/products/mandala30page/colornourish.30page.png',
     previewImages: [
-      { src: '/images/products/Apple Blossom Mandala.png', alt: 'Detailed floral mandala coloring page, preview 1' },
-      { src: '/images/products/Art Deco Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
-      { src: '/images/products/Autumn Leaves Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala30page/Apple Blossom Mandala.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala30page/Art Deco Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala30page/Autumn Leaves Mandala Coloring.png', alt: 'Detailed floral mandala coloring page, preview 1' },
+      { src: '/images/products/mandala30page/colornourish.30page.end.png', alt: 'Detailed floral mandala coloring page, preview 1' },
       
     ],
     downloadUrl: '/downloads/adults/mandala book 30page.pdf',
@@ -325,7 +331,8 @@ export const products = [
   ],
 
   downloadUrl: '/downloads/adults/Ultimate 50-Page Coloring Book.pdf',
-  actionUrl: 'https://bestlockers.space/iframe/d0aba2d4-e128-11f1-924e-8a5fb7be40ea',
+  actionUrl: 'https://bestlockers.space/iframe/9d56b970-e2b1-11f1-b88f-8a5fb7be40ea',
+
   title: 'The Ultimate 50-Page Coloring Book for Adults',
 
   shortDescription:
