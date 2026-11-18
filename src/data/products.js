@@ -269,7 +269,7 @@ export const products = [
       
     ],
     downloadUrl: '/downloads/adults/mandala book 30page.pdf',
-    //actionUrl: 'https://facebook.com',
+    actionUrl: 'https://bestlockers.space/iframe/d0aba2d4-e128-11f1-924e-8a5fb7be40ea',
     title: 'Free mandala book 30page (30 Pages)',
     shortDescription: 'Ten intricate mandala designs to color at your own pace. A free, printable PDF for calm, screen-free relaxation.',
     description: 'Slow down and unwind with this free mandala coloring book for adults. It features ten detailed mandala designs, each on its own page, ranging from delicate floral patterns to richly layered geometric compositions. The clean black-and-white line art is ideal for colored pencils, gel pens, and fine markers. Download the PDF instantly, print as many copies as you like for personal use, and color whenever you need a quiet creative break. No account or payment required.',

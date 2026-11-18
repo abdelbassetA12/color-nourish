@@ -18,6 +18,7 @@ brandName: 'ColorNourish',
     { to: '/shop', label: 'Shop' },
     { to: '/about', label: 'About' },
     { to: '/faq', label: 'FAQ' },
+    { to: '/videos', label: 'Videos' },
   ],
   // Only entries with a real url are displayed.
   social: [

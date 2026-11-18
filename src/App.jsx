@@ -12,6 +12,7 @@ import FAQ from './pages/FAQ.jsx';
 import Contact from './pages/Contact.jsx';
 import Favorites from './pages/Favorites.jsx';
 import AdminStats from './pages/AdminStats.jsx';
+import Videos from './pages/Videos.jsx';
 import { Privacy, Terms, RefundPolicy, DigitalDownloads } from './pages/Policies.jsx';
 import NotFound from './pages/NotFound.jsx';
 import { trackPageView, adminPath } from './utils/analytics.js';
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/digital-downloads" element={<DigitalDownloads />} />
+          <Route path="/videos" element={<Videos />} />
           <Route path={adminPath()} element={<AdminStats />} />
           <Route path="*" element={<NotFound />} />
         </Route>
